@@ -39,4 +39,41 @@ namespace DominantSpecies.Activities
       throw new NotImplementedException ();
     }
   }
+  
+  public class InsectSpeciationActivity : PlayerActivity
+  {
+    public List<Tile> SelectableLocations { get; private set; }
+    public Tile SelectedLocation { get; set; }
+    
+    public InsectSpeciationActivity(Player p, List<Tile> selectableTiles)
+      : base(p)
+    {
+      SelectableLocations = selectableTiles;
+    }
+    
+    public override ActivityType Type {
+      get {
+        // I am not sure what should be here, but cheat for now?
+        return ActivityType.SpeciationSpace;
+      }
+    }
+    
+    public override bool IsValid {
+      get {
+        return true;
+      }
+    }
+    
+    public override void Do (GameController GC)
+    {
+      SelectedLocation.Species[(int)Player.Animal] += 1;
+    }
+    
+    public override void Undo (GameController GC)
+    {
+      throw new NotImplementedException ();
+    }
+    
+    
+  }
 }

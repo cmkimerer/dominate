@@ -101,7 +101,7 @@ namespace DominantSpecies
       
       // Special speciation for the insect player
       if (g.PlayerFor(Animal.Insect) != null) {
-        yield return new DummyActivity(ActivityType.SpeciationSpace);
+        yield return new InsectSpeciationActivity(g.PlayerFor(Animal.Insect), g.map.Tiles.All.FindAll(t => t.Terrain != Tile.TerrainType.Empty && t.Terrain != Tile.TerrainType.Invalid));
       }
       
       // Wanderlust (tile placement)
